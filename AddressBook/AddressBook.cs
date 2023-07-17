@@ -66,5 +66,18 @@ namespace AddressBookProblem
                 Console.WriteLine("First name --->"+data.FirstName+"\nLast Name ----->"+data.LastName);
             }
         }
+        public void DeleteContact(string name)
+        {
+            Contact contact = new Contact();
+            foreach (var data in addressBook)
+            {
+                if (data.FirstName.Equals(name) || data.LastName.Equals(name))
+                {
+                    contact = data;
+                }
+            }
+            addressBook.Remove(contact);
+            Console.WriteLine("Contact removed");
+        }
     }
 }

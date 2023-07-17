@@ -11,7 +11,7 @@ internal class Program
         bool flag = true;
         while(flag)
         {
-            Console.WriteLine( "1.Create Contact \n2.Edit Contact\n3.Display\n4.Exit");
+            Console.WriteLine( "1.Create Contact \n2.Edit Contact\n3.Display\n4.Delete Contact\n5.Exit");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch(choice)
             {
@@ -27,6 +27,10 @@ internal class Program
                     book.Display();
                     break;
                 case 4:
+                    string name = Console.ReadLine();
+                    book.DeleteContact(name);
+                    break;
+                case 5:
                     flag = false;
                     break;
             }
