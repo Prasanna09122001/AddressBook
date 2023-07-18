@@ -28,7 +28,7 @@ namespace AddressBookProblem
         }
         public void EditContact(string name)
         {
-            foreach(var contact in addressBook)
+            foreach (var contact in addressBook)
             {
                 if (contact.FirstName.Equals(name) || contact.LastName.Equals(name) || contact.Address.Equals(name) || contact.City.Equals(name) || contact.State.Equals(name) || contact.Zip.Equals(name) || contact.PhoneNumber.Equals(name) || contact.Email.Equals(name))
                     Console.WriteLine("Enter the Option to Edit\n1.Last Name\n2.Address\n3.city\n4.state\n5.zip\n6.phone number \n7.Email");
@@ -36,7 +36,8 @@ namespace AddressBookProblem
                 switch (option)
 
                 {
-                    case 1: contact.LastName = Console.ReadLine();
+                    case 1:
+                        contact.LastName = Console.ReadLine();
                         break;
                     case 2:
                         contact.Address = Console.ReadLine();
@@ -51,7 +52,7 @@ namespace AddressBookProblem
                         contact.Zip = Convert.ToInt32(Console.ReadLine());
                         break;
                     case 6:
-                        contact.PhoneNumber = Convert.ToInt64( Console.ReadLine());
+                        contact.PhoneNumber = Convert.ToInt64(Console.ReadLine());
                         break;
                     case 7:
                         contact.Email = Console.ReadLine();
@@ -63,7 +64,7 @@ namespace AddressBookProblem
         {
             foreach (var data in addressBook)
             {
-                Console.WriteLine("First name --->"+data.FirstName+"\nLast Name ----->"+data.LastName);
+                Console.WriteLine("First name --->" + data.FirstName + "\nLast Name ----->" + data.LastName);
             }
         }
         public void DeleteContact(string name)
