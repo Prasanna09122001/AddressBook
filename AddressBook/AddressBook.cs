@@ -18,18 +18,12 @@ namespace AddressBookProblem
             {
                 FirstName = Console.ReadLine(),
                 LastName = Console.ReadLine(),
-                //  Address = Console.ReadLine(),
-                //  City = Console.ReadLine(),
-                //  State = Console.ReadLine(),
-                //  Zip = Convert.ToInt32(Console.ReadLine()),
-                //  PhoneNumber = Convert.ToInt64(Console.ReadLine()),
-                //  Email = Console.ReadLine(),
-                Address = "SS",
-                City = "SS",
-                State = "SS",
-                Zip = 11,
-                PhoneNumber = 11,
-                Email = "ss",
+                 Address = Console.ReadLine(),
+                 City = Console.ReadLine(),
+                 State = Console.ReadLine(),
+                 Zip = Convert.ToInt32(Console.ReadLine()),
+                 PhoneNumber = Convert.ToInt64(Console.ReadLine()),
+                 Email = Console.ReadLine(),
             };
             Console.WriteLine(contact.FirstName + " " + contact.LastName + " is added to the contact");
             addressBook.Add(contact);
