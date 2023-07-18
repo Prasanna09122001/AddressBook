@@ -7,11 +7,11 @@ internal class Program
     {
         Console.WriteLine("Welcome to Address book Problem :");
         AddressBook book = new AddressBook();
-
+        string key = null;
         bool flag = true;
         while (flag)
         {
-            Console.WriteLine("1.Create Contact \n2.Edit Contact\n3.Display\n4.Delete Contact\n5.Exit");
+            Console.WriteLine("1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.Exit");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch (choice)
             {
@@ -19,18 +19,25 @@ internal class Program
                     book.CreateContact();
                     break;
                 case 2:
-                    Console.WriteLine("Enter the  First name");
-                    string fname = Console.ReadLine();
-                    book.EditContact(fname);
+                    book.AddAddressBookToDictionary();
                     break;
                 case 3:
-                    book.Display();
+                    Console.WriteLine("Enter Key");
+                    key = Console.ReadLine();
+                    Console.WriteLine("Enter the  First name");
+                    string fname = Console.ReadLine();
+                    book.EditContact(key, fname);
                     break;
                 case 4:
-                    string name = Console.ReadLine();
-                    book.DeleteContact(name);
+                    book.Display();
                     break;
                 case 5:
+                    Console.WriteLine("Enter Key");
+                    key = Console.ReadLine();
+                    string name = Console.ReadLine();
+                    book.DeleteContact(key, name);
+                    break;
+                case 6:
                     flag = false;
                     break;
             }
