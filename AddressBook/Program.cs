@@ -11,7 +11,11 @@ internal class Program
         bool flag = true;
         while(flag)
         {
+<<<<<<< HEAD
             Console.WriteLine( "1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.Exit");
+=======
+            Console.WriteLine("1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.Exit");
+>>>>>>> UC7-MultipleDictionary
             int choice = Convert.ToInt32(Console.ReadLine());
             switch(choice)
             {
@@ -26,7 +30,11 @@ internal class Program
                     key = Console.ReadLine();
                     Console.WriteLine("Enter the  First name");
                     string fname = Console.ReadLine();
+<<<<<<< HEAD
                     book.EditContact(key,fname);
+=======
+                    book.EditContact(key, fname);
+>>>>>>> UC7-MultipleDictionary
                     break;
                 case 4:
                     book.Display();
@@ -35,7 +43,11 @@ internal class Program
                     Console.WriteLine("Enter Key");
                     key = Console.ReadLine();
                     string name = Console.ReadLine();
+<<<<<<< HEAD
                     book.DeleteContact(key,name);
+=======
+                    book.DeleteContact(key, name);
+>>>>>>> UC7-MultipleDictionary
                     break;
                 case 6:
                     flag = false;

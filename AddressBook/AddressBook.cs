@@ -9,7 +9,7 @@ namespace AddressBookProblem
 {
     public class AddressBook
     {
-        List<Contact> addressBook = new List<Contact>(); 
+        List<Contact> addressBook = new List<Contact>();
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
         public void CreateContact()
         {
@@ -18,18 +18,12 @@ namespace AddressBookProblem
             {
                 FirstName = Console.ReadLine(),
                 LastName = Console.ReadLine(),
-              //  Address = Console.ReadLine(),
-              //  City = Console.ReadLine(),
-              //  State = Console.ReadLine(),
-              //  Zip = Convert.ToInt32(Console.ReadLine()),
-              //  PhoneNumber = Convert.ToInt64(Console.ReadLine()),
-              //  Email = Console.ReadLine(),
-                Address = "SS",
-                City = "SS",
-                State = "SS",
-                Zip = 11,
-                PhoneNumber =11,
-                Email = "ss",
+                 Address = Console.ReadLine(),
+                 City = Console.ReadLine(),
+                 State = Console.ReadLine(),
+                 Zip = Convert.ToInt32(Console.ReadLine()),
+                 PhoneNumber = Convert.ToInt64(Console.ReadLine()),
+                 Email = Console.ReadLine(),
             };
             Console.WriteLine(contact.FirstName + " " + contact.LastName + " is added to the contact");
             addressBook.Add(contact);
@@ -87,14 +81,14 @@ namespace AddressBookProblem
         {
             foreach (var data in dict)
             {
-                Console.WriteLine("Data key --->"+data.Key);
-                foreach(var contact in data.Value)
+                Console.WriteLine("Data key --->" + data.Key);
+                foreach (var contact in data.Value)
                 {
                     Console.WriteLine("First name --->" + contact.FirstName + "\nLast Name ----->" + contact.LastName);
                 }
             }
         }
-        public void DeleteContact(string name,string contactName)
+        public void DeleteContact(string name, string contactName)
         {
             Contact contact = new Contact();
             foreach (var data in dict)
@@ -105,6 +99,7 @@ namespace AddressBookProblem
                     {
                         if (item.FirstName.Equals(contactName) || item.LastName.Equals(contactName))
                         {
+
                             contact = item;
                         }
                     }
