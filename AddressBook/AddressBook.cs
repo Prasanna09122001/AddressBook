@@ -33,7 +33,7 @@ namespace AddressBookProblem
             Console.WriteLine("Enter the unique Name");
             string uniquename = Console.ReadLine();
             dict.Add(uniquename, addressBook);
-            addressBook = null;
+            addressBook = new List<Contact>();
         }
         public void EditContact(string name, string contactName)
         {
