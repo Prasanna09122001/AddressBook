@@ -40,6 +40,9 @@ internal class Program
                     book.DeleteContact(key, name);
                     break;
                 case 6:
+                    book.SearchByCityOrState();
+                    break;
+                case 7:
                     flag = false;
                     break;
             }
