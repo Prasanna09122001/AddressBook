@@ -11,7 +11,7 @@ internal class Program
         bool flag = true;
         while(flag)
         {
-            Console.WriteLine( "1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.Exit");
+            Console.WriteLine( "1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.SearchByCityOrState\n7.Exit");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch(choice)
             {

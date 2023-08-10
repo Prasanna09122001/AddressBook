@@ -125,7 +125,8 @@ namespace AddressBookProblem
         }
         public void SearchByCityOrState()
         {
-            Console.WriteLine("Enter the number to Search 1.City\n2.State");
+            int cityCount = 0, StateCount = 0;
+            Console.WriteLine("Enter the number to Search\n1.City\n2.State");
             int num = Convert.ToInt32(Console.ReadLine());
             if(num==1)
             {
@@ -138,8 +139,10 @@ namespace AddressBookProblem
                 }
                 foreach(var Contact in contact)
                 {
-                    Console.WriteLine(Contact.FirstName+" "+Contact.FirstName+"is found in the Address Book");
+                    Console.WriteLine(Contact.FirstName+" "+Contact.LastName+" is found in that City");
+                    cityCount++;
                 }
+                Console.WriteLine("Number of Persons In the City is "+cityCount);
             }
             else
             {
@@ -152,8 +155,10 @@ namespace AddressBookProblem
                 }
                 foreach (var Contact in contact)
                 {
-                    Console.WriteLine(Contact.FirstName + " " + Contact.FirstName + "is found in the Address Book");
+                    Console.WriteLine(Contact.FirstName + " " + Contact.LastName + "is found in that State");
+                    StateCount++;
                 }
+                Console.WriteLine("Number of Persons in the State is "+StateCount);
             }
         }
     }
