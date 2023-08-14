@@ -13,6 +13,8 @@ namespace AddressBookProblem
         int Count = 0;
         List<Contact> addressBook = new List<Contact>();
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> CityCount = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> StateCount = new Dictionary<string, List<Contact>>();
         public void CreateContact()
         {
             Console.WriteLine("Enter the detais :\n 1.First Name \n2.Last name \n3.Address \n4.City Name \n5.State Name \n.6.Zip code \n7.Phone Number \n8.Email Address ");
@@ -115,8 +117,7 @@ namespace AddressBookProblem
                     {
                         if (item.FirstName.Equals(contactName) || item.LastName.Equals(contactName))
                         {
-
-                            contact = item;
+                           contact = item;
                         }
                     }
                     data.Value.Remove(contact);
@@ -126,7 +127,7 @@ namespace AddressBookProblem
         }
         public void SearchByCityOrState()
         {
-            int cityCount = 0, StateCount = 0;
+            
             Console.WriteLine("Enter the number to Search\n1.City\n2.State");
             int num = Convert.ToInt32(Console.ReadLine());
             if(num==1)
@@ -134,17 +135,17 @@ namespace AddressBookProblem
                 Console.WriteLine("Enter the city to search");
                 string city = Console.ReadLine();
                 List<Contact> contact = new List<Contact>();
+                Console.WriteLine("The persons in the City are: ");
                 foreach(var data in dict)
                 {
-                    contact = data.Value.Where(x => x.City.Equals(city)).ToList();
+                    contact = data.Value.Where(x => x.City == city).ToList();
+                    foreach (var Contact in contact)
+                    {
+                        Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
+                        CityCount.Add(data.Key, contact);
+                    }
                 }
-                Console.WriteLine("The persons in the City are: ");
-                foreach (var Contact in contact)
-                {
-                    Console.WriteLine(Contact.FirstName+" "+Contact.LastName);
-                    cityCount++;
-                }
-                Console.WriteLine("Number of Persons In the City is "+cityCount);
+                
                 Console.WriteLine("Enter the Persone Name to Search in the city");
                 string name = Console.ReadLine();
                 foreach (var Contact in contact)
@@ -155,7 +156,6 @@ namespace AddressBookProblem
                         Console.WriteLine(Contact.FirstName + " " + Contact.LastName+" "+Contact.PhoneNumber);
                     }
                 }
-
             }
             else
             {
@@ -165,13 +165,14 @@ namespace AddressBookProblem
                 foreach (var data in dict)
                 {
                     contact = data.Value.Where(x => x.State.Equals(state)).ToList();
-                }
+                } 
                 foreach (var Contact in contact)
                 {
                     Console.WriteLine(Contact.FirstName + " " + Contact.LastName + "is found in that State");
-                    StateCount++;
+                    StateCount.Add(state, contact);
+                  
                 }
-                Console.WriteLine("Number of Persons in the State is "+StateCount);
+               
                 Console.WriteLine("Enter the Persone Name to Search in this State");
                 string name = Console.ReadLine();
                 foreach (var Contact in contact)
@@ -183,6 +184,34 @@ namespace AddressBookProblem
                     }
                 }
             }
+        }
+        public void CountCity()
+        {
+            int cityCount = 0;
+            foreach (var data in CityCount)
+            {
+                Console.WriteLine("Data key --->" + data.Key);
+                foreach (var contact in data.Value)
+                {
+                    Console.WriteLine("First name --->" + contact.FirstName + "\nLast Name ----->" + contact.LastName);
+                    cityCount++;
+                }
+            }
+            Console.WriteLine("The Number of the count in the city " + cityCount);
+        }
+        public void CountState()
+        {
+            int stateCount = 0;
+            foreach (var data in StateCount)
+            {
+                Console.WriteLine("Data key --->" + data.Key);
+                foreach (var contact in data.Value)
+                {
+                    Console.WriteLine("First name --->" + contact.FirstName + "\nLast Name ----->" + contact.LastName);
+                    stateCount++;
+                }
+            }
+            Console.WriteLine("The Number of the count in the State " + stateCount);
         }
     }
 }
