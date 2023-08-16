@@ -15,6 +15,7 @@ namespace AddressBookProblem
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
         Dictionary<string, List<Contact>> CityCount = new Dictionary<string, List<Contact>>();
         Dictionary<string, List<Contact>> StateCount = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> sort = new Dictionary<string, List<Contact>>();
         public void CreateContact()
         {
             Console.WriteLine("Enter the detais :\n 1.First Name \n2.Last name \n3.Address \n4.City Name \n5.State Name \n.6.Zip code \n7.Phone Number \n8.Email Address ");
@@ -212,6 +213,24 @@ namespace AddressBookProblem
                 }
             }
             Console.WriteLine("The Number of the count in the State " + stateCount);
+        }
+        public void Sort()
+        {
+            Console.WriteLine("Write the number to Sort \n1.Name");
+            int num = Convert.ToInt32(Console.ReadLine());
+             foreach(var data in dict.Values)
+             {
+                if (num == 1)
+                {
+                    data.Sort((a, b) => a.FirstName.CompareTo(b.FirstName));
+                    Display();
+                }
+
+                else
+                {
+                    Display();
+                }
+             }
         }
     }
 }

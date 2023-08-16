@@ -47,7 +47,10 @@ internal class Program
                     break;
                 case 8:
                     book.CountState();
-                    break; 
+                    break;
+                case 9:
+                    book.Sort();
+                    break;
             }
         }
            
