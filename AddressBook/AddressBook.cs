@@ -216,21 +216,28 @@ namespace AddressBookProblem
         }
         public void Sort()
         {
-            Console.WriteLine("Write the number to Sort \n1.Name");
+            Console.WriteLine("Write the number to Sort \n1.Name\n2.City\n3.State\n4.Zip");
             int num = Convert.ToInt32(Console.ReadLine());
              foreach(var data in dict.Values)
              {
                 if (num == 1)
                 {
                     data.Sort((a, b) => a.FirstName.CompareTo(b.FirstName));
-                    Display();
                 }
-
-                else
+                if (num == 2)
                 {
-                    Display();
+                    data.Sort((a, b) => a.City.CompareTo(b.City));
+                }
+                if (num == 3)
+                {
+                    data.Sort((a, b) => a.State.CompareTo(b.State));
+                }
+                if (num == 4)
+                {
+                    data.Sort((a, b) => a.Zip.CompareTo(b.Zip));
                 }
              }
+            Display();
         }
     }
 }
