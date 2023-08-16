@@ -3,15 +3,17 @@ using System.Text;
 
 internal class Program
 {
-    private static void Main(string[] args)
+    static string filepath = @"D:\Bridgelabz Statement\Address Book\AddressBook\AddressBook\ContactFile.txt";
+    public static void Main(string[] args)
     {
+        
         Console.WriteLine("Welcome to Address book Problem :");
         AddressBook book = new AddressBook();
         string key = null;
         bool flag = true;
         while(flag)
         {
-            Console.WriteLine( "1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.SearchByCityOrState\n7.CityCount\n8.StateCount");
+            Console.WriteLine( "1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.SearchByCityOrState\n7.CityCount\n8.StateCount\n9.Sort By name,city,State or Zipcode");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch(choice)
             {
@@ -51,8 +53,16 @@ internal class Program
                 case 9:
                     book.Sort();
                     break;
+                case 10:
+                    book.ReadFromStreamWriter(filepath);
+                    break;
+                case 11:
+                    book.ReadFromStreamReader(filepath);
+                    break;
+                default:
+                    flag = false;
+                    break;
             }
         }
-           
     }
 }

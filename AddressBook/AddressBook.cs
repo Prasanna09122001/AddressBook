@@ -12,7 +12,7 @@ namespace AddressBookProblem
     {
         int Count = 0;
         List<Contact> addressBook = new List<Contact>();
-        Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
+        static Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
         Dictionary<string, List<Contact>> CityCount = new Dictionary<string, List<Contact>>();
         Dictionary<string, List<Contact>> StateCount = new Dictionary<string, List<Contact>>();
         Dictionary<string, List<Contact>> sort = new Dictionary<string, List<Contact>>();
@@ -238,6 +238,33 @@ namespace AddressBookProblem
                 }
              }
             Display();
+        }
+        public void ReadFromStreamWriter(string filepath)
+        {
+            using (StreamWriter stream = File.AppendText(filepath))
+            {
+                foreach (var data in dict)
+                {
+                    stream.WriteLine(data.Key);
+                    foreach (var contact in data.Value)
+                    {
+                        stream.WriteLine(contact.FirstName+","+contact.LastName + "," + contact.Address + "," + contact.City + "," + contact.State + "," + contact.Zip + "," + contact.PhoneNumber 
+                            + "," + contact.Email);
+                    }
+                }
+                stream.Close();
+            }
+        }
+        public void ReadFromStreamReader(string filepath)
+        {
+            using (StreamReader stream = File.OpenText(filepath))
+            {
+                string s = "";
+                while ((s = stream.ReadLine()) != null)
+                {
+                    Console.WriteLine(s);
+                }
+            }
         }
     }
 }
