@@ -5,6 +5,7 @@ internal class Program
 {
     static string filepath = @"D:\Bridgelabz Statement\Address Book\AddressBook\AddressBook\ContactFile.txt";
     static string filepath1 = @"D:\Bridgelabz Statement\Address Book\AddressBook\AddressBook\ContactFile.CSV";
+    static string filepath2 = @"D:\Bridgelabz Statement\Address Book\AddressBook\AddressBook\ContactFile.json";
     public static void Main(string[] args)
     {
         
@@ -14,7 +15,7 @@ internal class Program
         bool flag = true;
         while(flag)
         {
-            Console.WriteLine( "1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.SearchByCityOrState\n7.CityCount\n8.StateCount\n9.Sort By name,city,State or Zipcode\n10.Write in the File\n11.Read the Text File");
+            Console.WriteLine( "1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.SearchByCityOrState\n7.CityCount\n8.StateCount\n9.Sort By name,city,State or Zipcode\n10.Write in the File\n11.Read the Text File\n12.Read the CSV file\n13.Write CSV File\n14.Write Json File\n15.Read Json File\n16.Exit");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch(choice)
             {
@@ -65,6 +66,12 @@ internal class Program
                     break;
                 case 13:
                     book.WriteCSVfile(filepath1);
+                    break;
+                case 14:
+                    book.WriteToJsonFile(filepath2);
+                    break;
+                case 15:
+                    book.ReadFromJsonFile(filepath2);
                     break;
                 default:
                     flag = false;

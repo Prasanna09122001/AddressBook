@@ -1,0 +1,36 @@
+{
+  "Prasanna": [
+    {
+      "FirstName": "Prasanna",
+      "LastName": "Venkatesh",
+      "Address": "triplicane",
+      "City": "Chennai",
+      "State": "Tamilnadu",
+      "Zip": 600005,
+      "PhoneNumber": 66369988552,
+      "Email": "pras@email.com"
+    }
+  ],
+  "Shrey": [
+    {
+      "FirstName": "Shrey",
+      "LastName": "Kumar",
+      "Address": "chennai",
+      "City": "chennai",
+      "State": "Tamil Nadu",
+      "Zip": 600004,
+      "PhoneNumber": 9831273194,
+      "Email": "shrey@email.com"
+    },
+    {
+      "FirstName": "naren",
+      "LastName": "Kishore ",
+      "Address": "coimbatore",
+      "City": "cbe",
+      "State": "tamil Nadu",
+      "Zip": 5354635,
+      "PhoneNumber": 345653767,
+      "Email": "naren@gmail.com"
+    }
+  ]
+}

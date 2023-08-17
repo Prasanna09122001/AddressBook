@@ -1,2 +1,5 @@
 Prasanna
-prasanna,venkatesj,sgr,raey,ary,354,436,re
+Prasanna,Venkatesh,triplicane,Chennai,Tamilnadu,600005,66369988552,pras@email.com
+Shrey
+Shrey,Kumar,chennai,chennai,Tamil Nadu,600004,9831273194,shrey@email.com
+naren,Kishore ,coimbatore,cbe,tamil Nadu,5354635,345653767,naren@gmail.com
