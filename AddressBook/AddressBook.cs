@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Formats.Asn1;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using CsvHelper;
 
 namespace AddressBookProblem
 {
@@ -118,7 +121,7 @@ namespace AddressBookProblem
                     {
                         if (item.FirstName.Equals(contactName) || item.LastName.Equals(contactName))
                         {
-                           contact = item;
+                            contact = item;
                         }
                     }
                     data.Value.Remove(contact);
@@ -128,16 +131,16 @@ namespace AddressBookProblem
         }
         public void SearchByCityOrState()
         {
-            
+
             Console.WriteLine("Enter the number to Search\n1.City\n2.State");
             int num = Convert.ToInt32(Console.ReadLine());
-            if(num==1)
+            if (num == 1)
             {
                 Console.WriteLine("Enter the city to search");
                 string city = Console.ReadLine();
                 List<Contact> contact = new List<Contact>();
                 Console.WriteLine("The persons in the City are: ");
-                foreach(var data in dict)
+                foreach (var data in dict)
                 {
                     contact = data.Value.Where(x => x.City == city).ToList();
                     foreach (var Contact in contact)
@@ -146,15 +149,15 @@ namespace AddressBookProblem
                         CityCount.Add(data.Key, contact);
                     }
                 }
-                
+
                 Console.WriteLine("Enter the Persone Name to Search in the city");
                 string name = Console.ReadLine();
                 foreach (var Contact in contact)
                 {
-                    if(Contact.FirstName.Equals(name))
+                    if (Contact.FirstName.Equals(name))
                     {
                         Console.WriteLine("The Person is found in the given city and his phone number is");
-                        Console.WriteLine(Contact.FirstName + " " + Contact.LastName+" "+Contact.PhoneNumber);
+                        Console.WriteLine(Contact.FirstName + " " + Contact.LastName + " " + Contact.PhoneNumber);
                     }
                 }
             }
@@ -166,14 +169,14 @@ namespace AddressBookProblem
                 foreach (var data in dict)
                 {
                     contact = data.Value.Where(x => x.State.Equals(state)).ToList();
-                } 
+                }
                 foreach (var Contact in contact)
                 {
                     Console.WriteLine(Contact.FirstName + " " + Contact.LastName + "is found in that State");
                     StateCount.Add(state, contact);
-                  
+
                 }
-               
+
                 Console.WriteLine("Enter the Persone Name to Search in this State");
                 string name = Console.ReadLine();
                 foreach (var Contact in contact)
@@ -218,8 +221,8 @@ namespace AddressBookProblem
         {
             Console.WriteLine("Write the number to Sort \n1.Name\n2.City\n3.State\n4.Zip");
             int num = Convert.ToInt32(Console.ReadLine());
-             foreach(var data in dict.Values)
-             {
+            foreach (var data in dict.Values)
+            {
                 if (num == 1)
                 {
                     data.Sort((a, b) => a.FirstName.CompareTo(b.FirstName));
@@ -236,7 +239,7 @@ namespace AddressBookProblem
                 {
                     data.Sort((a, b) => a.Zip.CompareTo(b.Zip));
                 }
-             }
+            }
             Display();
         }
         public void ReadFromStreamWriter(string filepath)
@@ -248,7 +251,7 @@ namespace AddressBookProblem
                     stream.WriteLine(data.Key);
                     foreach (var contact in data.Value)
                     {
-                        stream.WriteLine(contact.FirstName+","+contact.LastName + "," + contact.Address + "," + contact.City + "," + contact.State + "," + contact.Zip + "," + contact.PhoneNumber 
+                        stream.WriteLine(contact.FirstName + "," + contact.LastName + "," + contact.Address + "," + contact.City + "," + contact.State + "," + contact.Zip + "," + contact.PhoneNumber
                             + "," + contact.Email);
                     }
                 }
@@ -266,5 +269,33 @@ namespace AddressBookProblem
                 }
             }
         }
+        public void ReadCSVFile(string filepath)
+        {
+            using (var reader = new StreamReader(filepath))
+            {
+                using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    var records = CSV.GetRecords<Contact>().ToList();
+                    foreach (var data in records)
+                    {
+                        Console.WriteLine(data.FirstName + "---" + data.LastName + "---" + data.Address + "---" + data.City + "---" + data.State + "---" + data.Zip + "---" + data.PhoneNumber + "---" + data.Email);
+                    }
+                }
+            }
+        }
+        public void WriteCSVfile(string filepath)
+        {
+            using (var writer = new StreamWriter(filepath))
+            {
+                using (var csvExport = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    foreach (var data in dict)
+                    {
+                        csvExport.WriteRecords(data.Value);
+                    }
+                }
+            }
+        }
+
     }
 }

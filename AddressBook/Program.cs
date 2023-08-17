@@ -4,6 +4,7 @@ using System.Text;
 internal class Program
 {
     static string filepath = @"D:\Bridgelabz Statement\Address Book\AddressBook\AddressBook\ContactFile.txt";
+    static string filepath1 = @"D:\Bridgelabz Statement\Address Book\AddressBook\AddressBook\ContactFile.CSV";
     public static void Main(string[] args)
     {
         
@@ -13,7 +14,7 @@ internal class Program
         bool flag = true;
         while(flag)
         {
-            Console.WriteLine( "1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.SearchByCityOrState\n7.CityCount\n8.StateCount\n9.Sort By name,city,State or Zipcode");
+            Console.WriteLine( "1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.SearchByCityOrState\n7.CityCount\n8.StateCount\n9.Sort By name,city,State or Zipcode\n10.Write in the File\n11.Read the Text File");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch(choice)
             {
@@ -58,6 +59,12 @@ internal class Program
                     break;
                 case 11:
                     book.ReadFromStreamReader(filepath);
+                    break;
+                case 12:
+                    book.ReadCSVFile(filepath1);
+                    break;
+                case 13:
+                    book.WriteCSVfile(filepath1);
                     break;
                 default:
                     flag = false;
