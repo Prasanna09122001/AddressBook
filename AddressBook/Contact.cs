@@ -13,5 +13,7 @@ namespace AddressBookProblem
         public int Zip { get; set; }
         public long PhoneNumber { get; set; }
         public string Email { get; set; }
+        public int id { get; set; }
+        public DateTime contactdate { get; set; }
     }
 }

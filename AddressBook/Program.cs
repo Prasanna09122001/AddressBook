@@ -1,14 +1,13 @@
 ﻿using AddressBookProblem;
 using System.Text;
 
-internal class Program
+public class Program
 {
     static string filepath = @"D:\Bridgelabz Statement\Address Book\AddressBook\AddressBook\ContactFile.txt";
     static string filepath1 = @"D:\Bridgelabz Statement\Address Book\AddressBook\AddressBook\ContactFile.CSV";
     static string filepath2 = @"D:\Bridgelabz Statement\Address Book\AddressBook\AddressBook\ContactFile.json";
     public static void Main(string[] args)
     {
-        
         Console.WriteLine("Welcome to Address book Problem :");
         AddressBook book = new AddressBook();
         string key = null;
@@ -72,6 +71,12 @@ internal class Program
                     break;
                 case 15:
                     book.ReadFromJsonFile(filepath2);
+                    break;
+                case 16:
+                    //book.CreateDataBase();
+                    //book.CreateTable();
+                   // book.AddDetails();
+                    book.GetAllDetails();
                     break;
                 default:
                     flag = false;

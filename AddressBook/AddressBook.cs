@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Data;
+using System.Data.SqlClient;
 using System.Formats.Asn1;
 using System.Globalization;
 using System.Linq;
@@ -307,6 +309,119 @@ namespace AddressBookProblem
             var json = File.ReadAllText(filepath);
             dict = JsonConvert.DeserializeObject<Dictionary<string, List<Contact>>>(json);
             Display();
+        }
+        public void CreateDataBase()
+        {
+            SqlConnection con = new SqlConnection("data source = (localdb)\\MSSQLLocalDB; initial catalog=master; integrated Security= true");
+            try
+            {
+                string query = "Create Database AdvanceAddressBook";
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("DataBase Created Sucessfully");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("There is no database created ");
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public static SqlConnection con = new SqlConnection("data source = (localdb)\\MSSQLLocalDB; initial catalog=AdvanceAddressBook; integrated Security= true");
+        public void CreateTable()
+        {
+            try
+            {
+                string query = "Create table AddressBookDetails(id int primary key identity(1,1),firstName varchar(20),lastName varchar(20),address varchar(30),city varchar(20),state varchar(20),zip bigint,phonenumber bigint,email varchar(30),ContactTime datetime);";
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Table Created Sucessfully");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("There is no Table created " + ex);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public void AddDetails()
+        {
+            try
+            {
+                using (var reader = new StreamReader(@"D:\Bridgelabz Statement\Address Book\AddressBook\AddressBook\ContactFile.CSV"))
+                {
+                    using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
+                    {
+                        var records = CSV.GetRecords<Contact>().ToList();
+                        foreach (var data in records)
+                        {
+
+                            SqlCommand com = new SqlCommand("AddContactDetails", con);
+                            com.CommandType = CommandType.StoredProcedure;
+                            com.Parameters.AddWithValue("@firstName", data.FirstName);
+                            com.Parameters.AddWithValue("@lastName", data.LastName);
+                            com.Parameters.AddWithValue("@address", data.Address);
+                            com.Parameters.AddWithValue("@city", data.City);
+                            com.Parameters.AddWithValue("@state", data.State);
+                            com.Parameters.AddWithValue("@zip", data.Zip);
+                            com.Parameters.AddWithValue("@phonenumber", data.PhoneNumber);
+                            com.Parameters.AddWithValue("@email", data.Email);
+                            com.Parameters.AddWithValue("@ContactTime","") ;
+                            con.Open();
+                            com.ExecuteNonQuery();
+                            Console.WriteLine("Contact Added");
+                            con.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public void GetAllDetails()
+        {
+            List<Contact> details = new List<Contact>();
+            SqlCommand com = new SqlCommand("GetAllDetails", con);
+            com.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+            con.Open();
+            da.Fill(dt);
+            con.Close();
+            foreach (DataRow dr in dt.Rows)
+            {
+                details.Add(
+                   new Contact
+                   {
+                       id = Convert.ToInt32(dr["id"]),
+                       FirstName = Convert.ToString(dr["firstName"]),
+                       LastName = Convert.ToString(dr["lastName"]),
+                       contactdate = Convert.ToDateTime(dr["ContactTime"]),
+                       Address = Convert.ToString(dr["address"]),
+                       City = Convert.ToString(dr["city"]),
+                       State = Convert.ToString(dr["state"]),
+                       Email = Convert.ToString(dr["email"]),
+                       Zip = Convert.ToInt32(dr["zip"]),
+                       PhoneNumber = Convert.ToInt64(dr["phonenumber"])
+                   }
+                   );
+            }
+            foreach (var data in details)
+            {
+                Console.WriteLine(data.id + " " + data.FirstName + " " + data.LastName+ " " + data.Address + " " + data.City + " " + data.State+" "+data.Zip+" "+data.PhoneNumber+" "+data.Email+" "+data.contactdate);
+            }
         }
     }
 }
