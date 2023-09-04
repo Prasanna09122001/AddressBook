@@ -423,5 +423,33 @@ namespace AddressBookProblem
                 Console.WriteLine(data.id + " " + data.FirstName + " " + data.LastName+ " " + data.Address + " " + data.City + " " + data.State+" "+data.Zip+" "+data.PhoneNumber+" "+data.Email+" "+data.contactdate);
             }
         }
+        public void UpdateDetails(Contact contact)
+        {
+            try
+            {
+                SqlCommand com = new SqlCommand("EditContactDetails", con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@firstName", contact.FirstName);
+                com.Parameters.AddWithValue("@lastName", contact.LastName);
+                com.Parameters.AddWithValue("@address", contact.Address);
+                com.Parameters.AddWithValue("@city", contact.City);
+                com.Parameters.AddWithValue("@state", contact.State);
+                com.Parameters.AddWithValue("@zip", contact.Zip);
+                com.Parameters.AddWithValue("@phonenumber", contact.PhoneNumber);
+                com.Parameters.AddWithValue("@email", contact.Email);
+               // com.Parameters.AddWithValue("@ContactTime", contact.contactdate);
+                con.Open();
+                int i = com.ExecuteNonQuery();
+                Console.WriteLine("DataBase Updated");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

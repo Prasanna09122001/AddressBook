@@ -14,7 +14,7 @@ public class Program
         bool flag = true;
         while(flag)
         {
-            Console.WriteLine( "1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.SearchByCityOrState\n7.CityCount\n8.StateCount\n9.Sort By name,city,State or Zipcode\n10.Write in the File\n11.Read the Text File\n12.Read the CSV file\n13.Write CSV File\n14.Write Json File\n15.Read Json File\n16.Exit");
+            Console.WriteLine( "1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.SearchByCityOrState\n7.CityCount\n8.StateCount\n9.Sort By name,city,State or Zipcode\n10.Write in the File\n11.Read the Text File\n12.Read the CSV file\n13.Write CSV File\n14.Write Json File\n15.Read Json File\n16.Retreive Data from the Database\n17.Update Data in Database\n18.Exit");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch(choice)
             {
@@ -73,10 +73,25 @@ public class Program
                     book.ReadFromJsonFile(filepath2);
                     break;
                 case 16:
-                    //book.CreateDataBase();
-                    //book.CreateTable();
-                   // book.AddDetails();
+                    book.CreateDataBase();
+                    book.CreateTable();
+                    book.AddDetails();
                     book.GetAllDetails();
+                    break;
+                case 17:
+
+                    Contact details = new Contact()
+                    {
+                        FirstName = "naren",
+                        LastName = "Kishore R S",
+                        Address = "street2",
+                        City = "Cbe",
+                        State = "TamilNadu",
+                        Zip = 600001,
+                        PhoneNumber = 9876543210,
+                        Email = "naren@gmail.com"
+                    };
+                    book.UpdateDetails(details);
                     break;
                 default:
                     flag = false;
