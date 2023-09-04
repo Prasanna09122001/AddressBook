@@ -451,5 +451,50 @@ namespace AddressBookProblem
                 con.Close();
             }
         }
+        public void RetreivedatainaParticularPeriod(string Date)
+        {
+            try
+            {
+                List<Contact> details = new List<Contact>();
+                SqlCommand com = new SqlCommand("GetRecords", con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@ContactTime", Date);
+                SqlDataAdapter da = new SqlDataAdapter(com);
+                DataTable dt = new DataTable();
+                con.Open();
+                da.Fill(dt);
+                con.Close();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    details.Add(
+                       new Contact
+                       {
+                           id = Convert.ToInt32(dr["id"]),
+                           FirstName = Convert.ToString(dr["firstName"]),
+                           LastName = Convert.ToString(dr["lastName"]),
+                           contactdate = Convert.ToDateTime(dr["ContactTime"]),
+                           Address = Convert.ToString(dr["address"]),
+                           City = Convert.ToString(dr["city"]),
+                           State = Convert.ToString(dr["state"]),
+                           Email = Convert.ToString(dr["email"]),
+                           Zip = Convert.ToInt32(dr["zip"]),
+                           PhoneNumber = Convert.ToInt64(dr["phonenumber"])
+                       }
+                       );
+                }
+                foreach (var data in details)
+                {
+                    Console.WriteLine(data.id + " " + data.FirstName + " " + data.LastName + " " + data.Address + " " + data.City + " " + data.State + " " + data.Zip + " " + data.PhoneNumber + " " + data.Email + " " + data.contactdate);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }
