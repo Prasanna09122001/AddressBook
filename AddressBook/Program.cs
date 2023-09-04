@@ -14,7 +14,9 @@ public class Program
         bool flag = true;
         while(flag)
         {
-            Console.WriteLine( "1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.SearchByCityOrState\n7.CityCount\n8.StateCount\n9.Sort By name,city,State or Zipcode\n10.Write in the File\n11.Read the Text File\n12.Read the CSV file\n13.Write CSV File\n14.Write Json File\n15.Read Json File\n16.Retreive Data from the Database\n17.Update Data in Database\n18.Exit");
+            Console.WriteLine( "1.Create Contact \n2.Add to Dictionary\n3.Edit Contact\n4.Display\n5.Delete Contact\n6.SearchByCityOrState\n7.CityCount\n8.StateCount\n9.Sort By name,city,State or Zipcode" +
+                "\n10.Write in the File\n11.Read the Text File\n12.Read the CSV file\n13.Write CSV File\n14.Write Json File\n15.Read Json File\n16.Retreive Data from the Database\n17.Update Data in Database" +
+                "\n18.get records in particular period\n19.Count in city\n20.count in state\n21.Exit");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch(choice)
             {
@@ -95,6 +97,12 @@ public class Program
                     break;
                 case 18:
                     book.RetreivedatainaParticularPeriod("04-09-2023 15:00:00");
+                    break;
+                case 19:
+                    book.CityCountinDatabase();
+                    break;
+                case 20:
+                    book.StateCountinDatabase();
                     break;
                 default:
                     flag = false;

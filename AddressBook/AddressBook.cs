@@ -496,5 +496,79 @@ namespace AddressBookProblem
                 con.Close();
             }
         }
+        public void CityCountinDatabase()
+        {
+            try
+            {
+                SqlCommand com = new SqlCommand("CountinCity", con);
+                com.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                int i = com.ExecuteNonQuery();
+                List<Contact> contacts = new List<Contact>();
+                SqlDataAdapter da = new SqlDataAdapter(com);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    contacts.Add(
+                        new Contact
+                        {
+                            City = Convert.ToString(dr["city"]),
+                            count = Convert.ToInt32(dr["count"])
+                        });
+                }
+                Console.WriteLine("The No of persons in the Each city are ");
+                foreach (var data in contacts)
+                {
+                    Console.WriteLine(data.City + "-->" + data.count);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public void StateCountinDatabase()
+        {
+            try
+            {
+                SqlCommand com = new SqlCommand("CountinState", con);
+                com.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                int i = com.ExecuteNonQuery();
+                List<Contact> contacts = new List<Contact>();
+                SqlDataAdapter da = new SqlDataAdapter(com);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    contacts.Add(
+                        new Contact
+                        {
+                            State = Convert.ToString(dr["state"]),
+                            count = Convert.ToInt32(dr["count"])
+                        });
+                }
+                Console.WriteLine("The No of persons in the Each State are ");
+                foreach (var data in contacts)
+                {
+                    Console.WriteLine(data.State + "-->" + data.count);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

@@ -15,5 +15,6 @@ namespace AddressBookProblem
         public string Email { get; set; }
         public int id { get; set; }
         public DateTime contactdate { get; set; }
+        public int count { get; set; }
     }
 }
