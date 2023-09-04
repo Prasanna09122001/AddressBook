@@ -570,5 +570,33 @@ namespace AddressBookProblem
                 con.Close();
             }
         }
+        public void AddNewContactDetails(Contact contact)
+        {
+            try
+            {
+                SqlCommand com = new SqlCommand("AddContactDetails", con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@firstName", contact.FirstName);
+                com.Parameters.AddWithValue("@lastName", contact.LastName);
+                com.Parameters.AddWithValue("@address", contact.Address);
+                com.Parameters.AddWithValue("@city", contact.City);
+                com.Parameters.AddWithValue("@state", contact.State);
+                com.Parameters.AddWithValue("@zip", contact.Zip);
+                com.Parameters.AddWithValue("@phonenumber", contact.PhoneNumber);
+                com.Parameters.AddWithValue("@email", contact.Email);
+                com.Parameters.AddWithValue("@ContactTime", "");
+                con.Open();
+                com.ExecuteNonQuery();
+                Console.WriteLine("Contact Added");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

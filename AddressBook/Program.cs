@@ -104,6 +104,20 @@ public class Program
                 case 20:
                     book.StateCountinDatabase();
                     break;
+                case 21:
+                   Contact contact = new Contact()
+                    {
+                        FirstName = "Mukesh",
+                        LastName = "Mukkara",
+                        Address = "street1",
+                        City = "Andhra",
+                        State = "Andhra Pradesh",
+                        Zip = 500001,
+                        PhoneNumber = 9567654356,
+                        Email = "mukesh@gmail.com"
+                    };
+                    book.AddNewContactDetails(contact);
+                    break;
                 default:
                     flag = false;
                     break;
